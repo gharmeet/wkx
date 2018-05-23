@@ -6,8 +6,9 @@ pipeline:
   build_mrp_image:
     image: plugins/docker
     repo: harmeetg/mrp
-    username: ${docker_username}
-    password: ${docker_password}
+    username: ${DOCKER_USERNAME}
+    password: ${DOCKER_PASSWORD}
+    secrets: [ docker_username, docker_password ]
     dockerfile: mrp/dockerfile
     context: mrp
     pull: false
@@ -27,7 +28,8 @@ pipeline:
     registry: hub.docker.com
     repo: harmeetg/mrp
     tags: latest
-    json_key: ${gcr_json_key_base64} 
+    json_key: ${GCR_JSON_KEY_BASE64}
+    secrets: [ gcr_json_key_base64 ]
     when:
       event: deployment
       environment: prod
