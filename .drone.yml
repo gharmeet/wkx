@@ -1,0 +1,13 @@
+workspace:
+  base: /workspace
+  path: poc
+
+pipeline:
+  build:
+    image: ruby
+#    environment:
+#      - BUNDLE_PATH=/drone/.bundle
+    commands:
+      - gem install bundler
+      - bundle install
+      - bundle exec jekyll serve --host=0.0.0.0
