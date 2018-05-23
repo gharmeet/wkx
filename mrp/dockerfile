@@ -1,0 +1,4 @@
+FROM ruby
+RUN mkdir -p /app
+WORKDIR /app
+ADD index.html /app
