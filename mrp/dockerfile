@@ -1,4 +1,10 @@
-FROM ruby
+FROM docker.io/ruby
 RUN mkdir -p /app
 WORKDIR /app
 ADD index.html /app
+ADD Gemfile /app
+#ENV BUNDLE_PATH /app/.bundle
+RUN gem install bundler
+RUN bundle install
+RUN bundle exec jekyll build
+ENTRYPOINT ["bundle", "exec", "jekyll", "serve", "--host=0.0.0.0"]

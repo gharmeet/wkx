@@ -3,11 +3,34 @@ workspace:
   path: poc
 
 pipeline:
-  build:
-    image: ruby
-#    environment:
-#      - BUNDLE_PATH=/drone/.bundle
+  build_mrp_image:
+    image: plugins/docker
+    repo: harmeetg/mrp
+    username: ${DOCKER_USERNAME}
+    password: ${DOCKER_PASSWORD}
+    dockerfile: mrp/dockerfile
+    context: mrp
+    pull: false
+  
+  publish_mrp:
+    image: docker
     commands:
-      - gem install bundler
-      - bundle install
-      - bundle exec jekyll serve --host=0.0.0.0
+      - docker run --rm -d -p 0.0.0.0:80:4000 harmeetg/mrp
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    when:
+      event: deployment
+      environment: dev
+
+  publish_mrp_to_gcr:
+    image: plugins/gcr
+    registry: hub.docker.com
+    repo: harmeetg/mrp
+    tags: latest
+    json_key: ${GCR_JSON_KEY_BASE64} 
+    when:
+      event: deployment
+      environment: prod
+
+
+
