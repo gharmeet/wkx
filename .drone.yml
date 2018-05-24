@@ -32,10 +32,7 @@ pipeline:
     zone: us-central1-a
     namespace: ${BRANCH}
     secrets: [ gcr_json_file ]
-    token: > 
-      ${GCR_JSON_FILE}
-    environment:
-      - GOOGLE_APPLICATION_CREDENTIALS=${GCR_JSON_FILE}
+    token: ${GCR_JSON_FILE}
     vars:
       image: docker.io/gharmeet/mrp:$${COMMIT}
       app: mrp
