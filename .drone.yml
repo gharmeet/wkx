@@ -33,13 +33,11 @@ pipeline:
     namespace: ${BRANCH}
     secrets: [ gcr_json_key_base64 ]
     environment:
-      - TOKEN=${GCR_JSON_KEY_BASE64}
+      - GOOGLE_APPLICATION_CREDENTIALS=${GCR_JSON_KEY_BASE64}
     vars:
       image: docker.io/gharmeet/mrp:$${COMMIT}
       app: mrp
       env: prod
-    when:
-      environment: production
 
 
 
