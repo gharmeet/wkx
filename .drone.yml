@@ -11,7 +11,7 @@ pipeline:
     secrets: [ docker_username, docker_password ]
     dockerfile: mrp/dockerfile
     context: mrp
-    tags: $$COMMIT
+    tags: $COMMIT
     pull_image: false
 
   publish_mrp:
@@ -28,11 +28,11 @@ pipeline:
     image: nytimes/drone-gke
     cluster: drone-demo
     zone: us-central1-a
-    namespace: $$BRANCH
+    namespace: $BRANCH
     secrets: [ gcr_json_key_base64 ]
     token: ${GCR_JSON_KEY_BASE64}
     vars:
-      image: docker.io/gharmeet/mrp:$$COMMIT
+      image: docker.io/gharmeet/mrp:$COMMIT
       app: mrp
       env: prod
     when:
