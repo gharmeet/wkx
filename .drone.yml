@@ -11,7 +11,7 @@ pipeline:
     secrets: [ docker_username, docker_password ]
     dockerfile: mrp/dockerfile
     context: mrp
-    tags: ${COMMIT}
+    tag: ${DRONE_COMMIT}
     pull_image: false
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -30,13 +30,17 @@ pipeline:
     image: nytimes/drone-gke
     cluster: drone-demo
     zone: us-central1-a
-    namespace: ${BRANCH}
-    secrets: [ google_application_credentials ]
-    token: ${GOOGLE_APPLICATION_CREDENTIALS}
+    namespace: ${DRONE_BRANCH}
+    environment:
+      - USER=root
+    expand_env_vars: true
     vars:
-      image: docker.io/gharmeet/mrp:$${COMMIT}
+      image: docker.io/gharmeet/mrp:${DRONE_COMMIT}
       app: mrp
       env: prod
-
+      user: $${USER}
+    secrets:
+      - source: GOOGLE_CREDENTIALS
+        target: token
 
 
