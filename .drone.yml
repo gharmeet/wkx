@@ -19,8 +19,8 @@ pipeline:
   publish_mrp:
     image: docker
     commands:
-      - docker stop cntr_mrp
-      - docker run --rm --pull=true -d --name cntr_mrp 0.0.0.0:80:4000 -d docker.io/harmeetg/mrp:latest
+      - docker stop cntr_mrp; docker rmi docker.io/harmeetg/mrp:latest
+      - docker run --rm --name cntr_mrp -p 0.0.0.0:80:4000 -d docker.io/harmeetg/mrp:latest
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     when:
@@ -40,7 +40,7 @@ pipeline:
       - USER=root
     expand_env_vars: true
     vars:
-      image: docker.io/harmeetg/mrp:${DRONE_COMMIT}
+      image: docker.io/harmeetg/mrp:$${DRONE_COMMIT}
       app: mrp
       env: prod
       user: $${USER}
