@@ -14,8 +14,7 @@ pipeline:
     tags: ${COMMIT}
     pull_image: false
     volumes:
-      - /var/lib/docker:/var/lib/docker
-
+      - /var/run/docker.sock:/var/run/docker.sock
 
   publish_mrp:
     image: docker
