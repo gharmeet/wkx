@@ -11,32 +11,30 @@ pipeline:
     secrets: [ docker_username, docker_password ]
     dockerfile: mrp/dockerfile
     context: mrp
-    pull: false
-    when:
-      environment: drone
-  
+    tags: $$COMMIT
+    pull_image: false
+
   publish_mrp:
     image: docker
     commands:
-      - docker run --rm -d -p 0.0.0.0:80:4000 harmeetg/mrp
+      - docker stop cntr_mrp
+      - docker run --rm --pull=true -d --name cntr_mrp 0.0.0.0:80:4000 -d docker.io/harmeetg/mrp:latest
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     when:
-      event: deployment
       environment: dev
 
   publish_mrp_to_gcr:
-    image: plugins/gcr
-    registry: docker.io
-    tags: latest
-    repo: harmeetg/mrp
-    username: ${DOCKER_USERNAME}
-    password: ${DOCKER_PASSWORD}
-    secrets: [ docker_username, docker_password, gcr_json_key_base64 ]
-    dockerfile: mrp/dockerfile
-    context: mrp
-    pull: false
-    json_key: ${GCR_JSON_KEY_BASE64}
+    image: nytimes/drone-gke
+    cluster: drone-demo
+    zone: us-central1-a
+    namespace: $$BRANCH
+    secrets: [ gcr_json_key_base64 ]
+    token: ${GCR_JSON_KEY_BASE64}
+    vars:
+      image: docker.io/gharmeet/mrp:$$COMMIT
+      app: mrp
+      env: prod
     when:
       event: deployment
       environment: prod
