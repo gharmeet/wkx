@@ -24,9 +24,12 @@ pipeline:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     when:
-      environment: dev
+      environment: local
 
-  publish_mrp_to_gcr:
+  publish_mrp_to_gke:
+    when:
+      branch:
+        include: [ release ]
     image: nytimes/drone-gke
     cluster: drone-demo
     zone: us-central1-a
@@ -48,7 +51,5 @@ pipeline:
         target: secret_api_token
       - source: SAMPLE_SECRET_64
         target: secret_base64_p12_cert
-        
-
-
+    
 
