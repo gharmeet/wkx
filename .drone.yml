@@ -27,7 +27,7 @@ pipeline:
 
   publish_mrp_to_gcr:
     image: plugins/gcr
-    registry: hub.docker.com
+    registry: docker.io
     tags: latest
     repo: harmeetg/mrp
     username: ${DOCKER_USERNAME}
