@@ -31,11 +31,11 @@ pipeline:
     cluster: drone-demo
     zone: us-central1-a
     namespace: ${BRANCH}
-    secrets: [ gcr_json_key_base64 ]
+    secrets: [ gcr_json_file ]
     token: > 
-      ${GCR_JSON_KEY_BASE64}
+      ${GCR_JSON_FILE}
     environment:
-      - GOOGLE_APPLICATION_CREDENTIALS=${GCR_JSON_KEY_BASE64}
+      - GOOGLE_APPLICATION_CREDENTIALS=${GCR_JSON_FILE}
     vars:
       image: docker.io/gharmeet/mrp:$${COMMIT}
       app: mrp
