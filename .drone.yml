@@ -35,7 +35,7 @@ pipeline:
     secrets: [ gcr_json_key_base64 ]
     token: ${GCR_JSON_KEY_BASE64}
     vars:
-      image: docker.io/gharmeet/mrp:${COMMIT}
+      image: docker.io/gharmeet/mrp:$${COMMIT}
       app: mrp
       env: prod
     when:
