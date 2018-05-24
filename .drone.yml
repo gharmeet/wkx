@@ -31,6 +31,8 @@ pipeline:
     cluster: drone-demo
     zone: us-central1-a
     namespace: ${DRONE_BRANCH}
+    template: mrp/.kube.yml
+    secret_template: mrp/.kube.sec.yml
     environment:
       - USER=root
     expand_env_vars: true
