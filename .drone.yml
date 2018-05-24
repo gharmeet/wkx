@@ -12,6 +12,8 @@ pipeline:
     dockerfile: mrp/dockerfile
     context: mrp
     pull: false
+    when:
+      environment: drone
   
   publish_mrp:
     image: docker
@@ -26,10 +28,15 @@ pipeline:
   publish_mrp_to_gcr:
     image: plugins/gcr
     registry: hub.docker.com
-    repo: harmeetg/mrp
     tags: latest
+    repo: harmeetg/mrp
+    username: ${DOCKER_USERNAME}
+    password: ${DOCKER_PASSWORD}
+    secrets: [ docker_username, docker_password, gcr_json_key_base64 ]
+    dockerfile: mrp/dockerfile
+    context: mrp
+    pull: false
     json_key: ${GCR_JSON_KEY_BASE64}
-    secrets: [ gcr_json_key_base64 ]
     when:
       event: deployment
       environment: prod
