@@ -31,11 +31,13 @@ pipeline:
     cluster: drone-demo
     zone: us-central1-a
     namespace: ${DRONE_BRANCH}
+    template: mrp/.kube.yml
+    secret_template: mrp/.kube.sec.yml
     environment:
       - USER=root
     expand_env_vars: true
     vars:
-      image: docker.io/gharmeet/mrp:${DRONE_COMMIT}
+      image: docker.io/harmeetg/mrp:${DRONE_COMMIT}
       app: mrp
       env: prod
       user: $${USER}
@@ -47,5 +49,6 @@ pipeline:
       - source: SAMPLE_SECRET_64
         target: secret_base64_p12_cert
         
+
 
 

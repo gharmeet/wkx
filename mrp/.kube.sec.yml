@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: Secret
+
+metadata:
+  name: {{.app}}-{{.env}}
+
+type: Opaque
+
+data:
+  api-token: {{.SECRET_API_TOKEN}}
