@@ -39,8 +39,7 @@ pipeline:
       app: mrp
       env: prod
     when:
-      event: deployment
-      environment: prod
+      environment: production
 
 
 
