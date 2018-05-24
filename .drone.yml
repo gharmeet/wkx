@@ -37,7 +37,7 @@ pipeline:
       - USER=root
     expand_env_vars: true
     vars:
-      image: docker.io/gharmeet/mrp:${DRONE_COMMIT}
+      image: docker.io/harmeetg/mrp:${DRONE_COMMIT}
       app: mrp
       env: prod
       user: $${USER}
