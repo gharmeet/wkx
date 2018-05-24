@@ -42,5 +42,10 @@ pipeline:
     secrets:
       - source: GOOGLE_CREDENTIALS
         target: token
+      - source: SAMPLE_SECRET_1
+        target: secret_api_token
+      - source: SAMPLE_SECRET_64
+        target: secret_base64_p12_cert
+        
 
 
