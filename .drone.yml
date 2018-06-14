@@ -51,5 +51,4 @@ pipeline:
         target: secret_api_token
       - source: SAMPLE_SECRET_64
         target: secret_base64_p12_cert
-    
 

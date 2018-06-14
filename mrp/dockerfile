@@ -1,9 +1,29 @@
 FROM docker.io/ruby
+
+RUN apt-get update -y && \
+    apt-get install locales -y && \
+    locale-gen en_US.UTF-8 && \
+    localedef -i en_US -f UTF-8 en_US.UTF-8
+
+ENV LANG en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
+
 RUN mkdir -p /app
 WORKDIR /app
 RUN gem install bundler
 ADD Gemfile /app
 RUN bundle install
+ADD _config.yml /app
 ADD index.html /app
-RUN bundle exec jekyll build
-ENTRYPOINT ["bundle", "exec", "jekyll", "serve", "--host=0.0.0.0"]
+RUN mkdir /app/pages
+Add about.md /app/pages
+Add home.md /app/pages
+RUN mkdir /app/_posts
+Add 2018-06-07-welcome-to-my-blog.md /app/_posts
+RUN mkdir /app/assets/
+RUN mkdir /app/assets/images
+Add image-1.jpeg /app/assets/images
+RUN mkdir /app/_data
+Add navigation.yml /app/_data
+#RUN bundle exec jekyll build 
+ENTRYPOINT ["bundle", "exec", "jekyll", "serve", "-l", "--host=0.0.0.0"]
