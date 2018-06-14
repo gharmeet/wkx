@@ -7,8 +7,7 @@ layout: splash
 #permalink: /:categories/:title
 
 author:
-  name:  "Harmeet"
-  bio: "Engineer, Soccer Mom"
+  name:  ""
 
 defaults:
   # _pages

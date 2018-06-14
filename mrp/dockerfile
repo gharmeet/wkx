@@ -26,4 +26,4 @@ Add image-1.jpeg /app/assets/images
 RUN mkdir /app/_data
 Add navigation.yml /app/_data
 #RUN bundle exec jekyll build 
-ENTRYPOINT ["bundle", "exec", "jekyll", "serve", "-l", "--host=0.0.0.0"]
+ENTRYPOINT ["bundle", "exec", "jekyll", "serve", "-V", "--host=0.0.0.0"]
