@@ -1,0 +1,28 @@
+theme: minimal-mistakes-jekyll
+minimal_mistakes_skin: "aqua"
+title: "My Reverse Phone"
+description: "An amazing place for reverse phone lookup"
+url: http://138.68.230.87
+layout: splash 
+#permalink: /:categories/:title
+
+author:
+  name:  "Harmeet"
+  bio: "Engineer, Soccer Mom"
+
+defaults:
+  # _pages
+  - scope:
+      path: ""
+      type: pages 
+    values:
+      layout: single
+      author_profile: true
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      related: true
