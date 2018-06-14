@@ -2,7 +2,7 @@ theme: minimal-mistakes-jekyll
 minimal_mistakes_skin: "aqua"
 title: "My Reverse Phone"
 description: "An amazing place for reverse phone lookup"
-url: http://138.68.230.87
+#url: http://138.68.230.87
 layout: splash 
 #permalink: /:categories/:title
 
