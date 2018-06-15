@@ -4,7 +4,9 @@ title: "My Reverse Phone"
 description: "An amazing place for reverse phone lookup"
 #url: http://138.68.230.87
 layout: splash 
-#permalink: /:categories/:title
+permalink: /:categories/:title
+#header:
+#  image: /assets/images/image-1.jpeg
 
 author:
   name:  ""
@@ -15,13 +17,13 @@ defaults:
       path: ""
       type: pages 
     values:
-      layout: single
+      layout: splash 
       author_profile: true
   # _posts
   - scope:
       path: ""
       type: posts
     values:
-      layout: single
+      layout: splash 
       author_profile: true
       related: true
