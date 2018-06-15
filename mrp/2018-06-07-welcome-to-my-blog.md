@@ -4,7 +4,7 @@ title: "My first Post"
 date: 2018-06-07
 permalink: /myfirstpost/
 header:
-  overlay_image: /assets/images/image-1.jpg
+  overlay_image: /assets/images/image-1.jpeg
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
 ---
 
