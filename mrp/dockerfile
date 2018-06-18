@@ -15,16 +15,17 @@ ADD Gemfile /app
 RUN bundle install
 ADD _config.yml /app
 ADD index.html /app
-RUN mkdir /app/pages
-Add about.md /app/pages
-#Add home.md /app/pages
+RUN mkdir /app/_pages
+Add about.md /app/_pages
+#Add home.md /app/_pages
 RUN mkdir /app/_posts
 Add 2018-06-07-welcome-to-my-blog.md /app/_posts
+Add 2018-06-15-post2.md /app/_posts
 RUN mkdir /app/assets/
 RUN mkdir /app/assets/images
 Add phone-1.jpeg /app/assets/images
 Add image-1.jpeg /app/assets/images
 RUN mkdir /app/_data
-#Add navigation.yml /app/_data
+Add navigation.yml /app/_data
 #RUN bundle exec jekyll build 
 ENTRYPOINT ["bundle", "exec", "jekyll", "serve", "-V", "--host=0.0.0.0"]
